@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "../pages/ThemeContext";
 import { FaMoon, FaSun } from "react-icons/fa";
@@ -10,6 +10,7 @@ const Navbar = () => {
   const location = useLocation();
   const [cartCount, setCartCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const updateCartCount = () => {
@@ -17,22 +18,32 @@ const Navbar = () => {
       const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
       setCartCount(totalQuantity);
     };
-
     updateCartCount();
     window.addEventListener("storage", updateCartCount);
     return () => window.removeEventListener("storage", updateCartCount);
   }, [location]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen]);
+
   return (
     <>
-      {/* Navbar */}
       <nav className="navbar bg-dark navbar-dark fixed-top px-3 d-flex justify-content-between align-items-center">
         <div className="d-flex align-items-center">
           <Link to="/" className="navbar-brand me-4" style={{ color: "orange" }}>
             <img src={logo} alt="ASmartBuy" height="50" className="me-2" />
           </Link>
-
-          {/* Desktop Menu - Left Side */}
           <div className="d-none d-lg-flex align-items-center gap-3">
             <Link to="/home" className={`btn btn-outline-warning ${location.pathname === "/home" ? "active" : ""}`}>Home</Link>
             <Link to="/products" className={`btn btn-outline-warning ${location.pathname.startsWith("/product") ? "active" : ""}`}>Products</Link>
@@ -40,36 +51,24 @@ const Navbar = () => {
             <Link to="/contact" className={`btn btn-outline-warning ${location.pathname === "/contact" ? "active" : ""}`}>Contact</Link>
           </div>
         </div>
-
-        {/* Desktop Menu - Right Side (Theme, Register, Login, Cart) */}
         <div className="d-none d-lg-flex align-items-center gap-3">
           <div className="nav-item mx-2" onClick={toggleTheme} style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: "5px", color: "white" }}>
             {theme === "light" ? <FaMoon size={20} /> : <FaSun size={20} />}
           </div>
-
           <Link to="/register" className="btn btn-outline-primary">Register</Link>
           <Link to="/login" className="btn btn-outline-success">Login</Link>
           <Link to="/cart" className={`btn btn-outline-info position-relative ${location.pathname === "/cart" ? "active" : ""}`}>
             Cart
             {cartCount > 0 && (
-              <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
-                {cartCount}
-              </span>
+              <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">{cartCount}</span>
             )}
           </Link>
         </div>
-
-        {/* Mobile Menu Toggle Button */}
-        <button className="btn btn-outline-light d-lg-none" onClick={() => setMenuOpen(true)}>
-          <FiMenu size={25} />
+        <button className="btn btn-outline-light d-lg-none" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <FiX size={25} /> : <FiMenu size={25} />}
         </button>
       </nav>
-
-      {/* Sliding Mobile Menu */}
-      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        <button className="btn-close-menu" onClick={() => setMenuOpen(false)}>
-          <FiX size={30} />
-        </button>
+      <div ref={menuRef} className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <ul className="mobile-menu-list">
           <li><Link to="/home" onClick={() => setMenuOpen(false)}>Home</Link></li>
           <li><Link to="/products" onClick={() => setMenuOpen(false)}>Products</Link></li>
@@ -81,8 +80,6 @@ const Navbar = () => {
           <li><Link to="/cart" onClick={() => setMenuOpen(false)}>Cart ({cartCount})</Link></li>
         </ul>
       </div>
-
-      {/* Custom CSS */}
       <style>{`
         .mobile-menu {
           position: fixed;
@@ -101,15 +98,6 @@ const Navbar = () => {
         }
         .mobile-menu.open {
           right: 0;
-        }
-        .btn-close-menu {
-          position: absolute;
-          top: 15px;
-          right: 15px;
-          background: none;
-          border: none;
-          color: white;
-          cursor: pointer;
         }
         .mobile-menu-list {
           list-style: none;
