@@ -1,5 +1,5 @@
 import React from "react";
-import FounderLogo from "../assets/founderAK.jpeg";
+import FounderLogo from "../assets/akatqueensland.jpeg";
 import Footer from "../components/Footer";
 
 
@@ -13,7 +13,7 @@ const Contact = () => {
                 <div className="row align-items-center mt-5">
                     {/* Left Side: Image */}
                     <div className="col-md-6">
-                        <img src={FounderLogo} alt="Customer Support" className="img-fluid rounded shadow" />
+                        <img src={FounderLogo} alt="Founder Image" className="img-fluid rounded shadow" />
                     </div>
 
                     {/* Right Side: Contact Form */}
