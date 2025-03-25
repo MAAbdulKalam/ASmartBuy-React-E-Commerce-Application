@@ -1,17 +1,20 @@
-.App {
-  text-align: center;
+body {
+  padding-bottom: 60px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+  text-decoration: none !important;
+  color: inherit;
 }
+
+.navbar {
+  top: auto;
+}
+
 
 .App-header {
   background-color: #282c34;
@@ -28,11 +31,357 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* loading spinner */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.wave-loader {
+  display: flex;
+  gap: 5px;
+}
+
+.wave-loader span {
+  display: block;
+  width: 8px;
+  height: 40px;
+  background: #ff5733;
+  animation: wave 1.2s infinite ease-in-out;
+}
+
+.wave-loader span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.wave-loader span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.wave-loader span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.wave-loader span:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: scaleY(1);
   }
-  to {
-    transform: rotate(360deg);
+
+  50% {
+    transform: scaleY(2);
   }
 }
+
+.loading-text {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* About Us Styling */
+.about-container {
+  padding: 20px;
+}
+
+.about-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #ff8008, #ffc837);
+  color: white;
+  padding: 50px 20px;
+  border-radius: 10px;
+}
+
+.about-content-left {
+  flex: 1;
+  padding: 20px;
+}
+
+.about-content-right {
+  flex: 1;
+  text-align: center;
+}
+
+.about-img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.about-content h2,
+.why-choose h2,
+.commitments h2 {
+  text-align: center;
+  color: #ff8008;
+  margin-bottom: 20px;
+}
+
+.about-content p,
+.commitments p {
+  text-align: justify;
+  max-width: 900px;
+  margin: 0 auto;
+  color: #444;
+}
+
+.why-choose {
+  margin: 50px 0;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.feature-card {
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 250px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right, #ff8008, #ffc837);
+  color: black;
+}
+
+.commitments {
+  margin-top: -40px;
+  text-align: center;
+  padding: 30px;
+  /* background: white; */
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.commitments p {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
+/* Contact Page */
+
+.contact-container h1 {
+  font-weight: bold;
+  color: #ff6f00;
+}
+
+.contact-container .card {
+  border-radius: 10px;
+  background: white;
+}
+
+.contact-container .btn-primary {
+  background: linear-gradient(45deg, #ff8000, #ffb700);
+  border: none;
+}
+
+.contact-container .btn-primary:hover {
+  background: linear-gradient(45deg, #ffb700, #ff8000);
+  transform: scale(1.05);
+}
+
+.contact-container .bi {
+  font-size: 24px;
+  color: #ff6f00;
+}
+
+.contactInfo {
+  color: rgb(90, 85, 85);
+}
+
+/* Home page stylings...*/
+/* Gradient heading effect */
+h3.text-center {
+  background: linear-gradient(to right, #ff8c00, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+/* Loading container adjusted to be lower */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  /* Adjusted height to push it down */
+}
+
+/* Gradient wave loader */
+.wave-loader span {
+  display: inline-block;
+  width: 10px;
+  height: 30px;
+  margin: 0 3px;
+  background: linear-gradient(to right, #ff8c00, #ffd700);
+  animation: wave 1.5s infinite ease-in-out;
+  /* Slower animation */
+}
+
+.wave-loader span:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.wave-loader span:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.wave-loader span:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.wave-loader span:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(1.8);
+  }
+}
+
+/* Card Hover Effect - Slower Zoom */
+.card {
+  border: none;
+  box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3);
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+  /* Slowed down */
+}
+
+.card:hover {
+  transform: scale(1.03);
+  /* Slower zoom */
+  box-shadow: 0px 6px 15px rgba(255, 165, 0, 0.6);
+}
+
+/* Button Gradient Effect */
+.btn-dark {
+  background: linear-gradient(to right, #ff8c00, #ffd700);
+  border: none;
+  /* transition: transform 0.3s ease-in-out, background 0.3s ease-in-out; */
+}
+
+.btn-dark:hover {
+  background: linear-gradient(to right, #ffd700, #ff8c00);
+}
+
+/* checkout stylings in cart page */
+.order-confirmation {
+  position: fixed;
+  top: 45%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(45deg, #ff9800, #ff5722, #f44336);
+  color: white;
+  padding: 20px 40px;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeOut 3s ease-in-out;
+  z-index: 1000;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.order-confirmation-img {
+  height: 50px;
+  width: 50px;
+}
+
+/* Apply Theme to Overall Page */
+/* Light Mode */
+[data-theme="light"] {
+  background-color: white;
+  color: black;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  background-color: black;
+  color: white;
+}
+
+.product-card {
+  width: 100%;  
+}
+
+@media (min-width: 576px) {  /* For small screens */
+  .product-card {
+      width: 50%; /* 2 per row */
+  }
+}
+
+@media (min-width: 768px) {  /* For tablets */
+  .product-card {
+      width: 33.33%; /* 3 per row */
+  }
+}
+
+@media (min-width: 992px) {  /* For laptops */
+  .product-card {
+      width: 20%; /* 5 per row */
+  }
+}
+
+@media (min-width: 1024px) {
+  .custom-col {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+
+.custom-col {
+  margin-bottom: 15px; 
+}
+
+
