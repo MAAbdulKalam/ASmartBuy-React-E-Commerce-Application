@@ -53,6 +53,7 @@ const Cart = () => {
         setTimeout(() => {
             setCart([]);
             localStorage.removeItem("cart");
+            window.dispatchEvent(new Event("storage"));
         }, 500);
 
         // Hide order confirmation after 3 seconds
