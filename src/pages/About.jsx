@@ -18,8 +18,9 @@ const About = () => {
       <div className="about-content py-5 mt-5">
         <h2>Who We Are</h2>
         <p>
-          At ASmartBuy, we believe in providing the best shopping experience with a wide range of products. Whether you need fresh groceries, the latest makeup collections, stylish furniture like beds and sofas, or high-quality food products, we’ve got you covered. 
-          Our mission is to offer high-quality products at unbeatable prices, ensuring customer satisfaction at every step.
+        At ASmartBuy, we believe in providing the best shopping experience with a wide range of products. Whether you need fresh groceries,
+        the latest makeup collections, stylish furniture like beds and sofas, or high-quality food products, we’ve got you covered. Our mission is 
+        to offer high-quality products at unbeatable prices, ensuring customer satisfaction at every step.
         </p>
       </div>
 
@@ -48,7 +49,8 @@ const About = () => {
       <div className="commitments py-5 mt-5 mb-3">
         <h2>Our Commitment</h2>
         <p>
-          At ASmartBuy, customer satisfaction is our top priority. We are committed to offering top-notch products, seamless shopping experiences, and unbeatable prices. With secure payments, easy returns, and round-the-clock support, shopping has never been more convenient!
+        ​At ASmartBuy, customer satisfaction is our top priority. We are committed to offering top-notch products, seamless shopping experiences 
+        and unbeatable prices. With secure payments, easy returns, and round-the-clock support, shopping has never been more convenient!
         </p>
       </div>
       <Footer />
